@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <main class="main">
+        <section class="sourceTextContainer">
+            <div class="textAreaContainer">
+                <!-- <label for="sourceText">Source Text:</label> -->
+                <button class="btn clrBtn clearSourceText">Clear</button>
+                <textarea
+                    name="source"
+                    id="sourceText"
+                    cols="30"
+                    rows="10"
+                    autofocus
+                    placeholder="Type source text here"
+                ></textarea>
+            </div>
+        </section>
+        <section class="conversionButtonContainer">
+            <button class="btn caseBtn toLowercase">Lowercase >></button>
+            <button class="btn caseBtn toUppercase">Uppercase >></button>
+        </section>
+        <section class="targetTextContainer">
+            <div class="textAreaContainer">
+                <!-- <label for="targetText">Target Text:</label> -->
+                <button class="btn clrBtn clearTargetText">Clear</button>
+                <textarea
+                    name="target"
+                    id="targetText"
+                    cols="30"
+                    rows="10"
+                    placeholder="Target text displayed here"
+                    readonly
+                ></textarea>
+            </div>
+        </section>
+    </main>
+
+<script src="scripts.js"></script>
+</body>
+</html>
