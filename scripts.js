@@ -28,6 +28,26 @@ const updateText = (currCase, ctx) => {
     case "uppercase":
       targetText.innerText = state.text.toLocaleUpperCase(locales);
       break;
+
+    case "capitalize":
+      const temp = state.text.toLocaleLowerCase(locales).split(" ");
+      // let text = "";
+      // if (state.text.length > 0) {
+      //   const temp = state.text.toLocaleLowerCase(locales).split(" ");
+      //   targetText.innerText = temp.map((word) => { 
+      //     if (word[0])
+      //       return word[0].toLocaleUpperCase(locales) + word.substring(1); 
+      //   }).join(" ");
+      // }
+      if (state.text.length > 0) {
+        for (let i = 0; i < temp.length; i++) {
+          if (temp[i][0])
+            temp[i] = temp[i][0].toUpperCase() + temp[i].substr(1);
+        }
+      }
+      targetText.innerText = temp.join(" ");
+      break;
+
     default:
       break;
   }
