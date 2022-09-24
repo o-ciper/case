@@ -42,7 +42,7 @@ const updateText = (currCase, ctx) => {
       if (state.text.length > 0) {
         for (let i = 0; i < temp.length; i++) {
           if (temp[i][0])
-            temp[i] = temp[i][0].toUpperCase() + temp[i].substr(1);
+            temp[i] = temp[i][0].toLocaleUpperCase(locales) + temp[i].substr(1);
         }
       }
       targetText.innerText = temp.join(" ");
