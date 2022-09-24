@@ -65,7 +65,6 @@ sourceText.addEventListener("input", (e) => {
 clearSourceTextBtn.addEventListener("click", (e) => {
   sourceText.textContent = "";
   sourceText.value = "";
-  updateText(state.case, "");
 });
 
 clearTargetTextBtn.addEventListener("click", (e) => {
