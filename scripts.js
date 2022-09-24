@@ -15,7 +15,7 @@ const updateText = (currCase, ctx) => {
   if (typeof ctx === "object") {
     state.text = ctx.target.value.replaceAll("\n", " ");
   } else if (typeof ctx === "string") {
-    state.text = state.text;
+    state.text = ctx;
   } else {
     state.text = "";
   }
@@ -65,10 +65,9 @@ sourceText.addEventListener("input", (e) => {
 clearSourceTextBtn.addEventListener("click", (e) => {
   sourceText.textContent = "";
   sourceText.value = "";
-  state.text;
+  updateText(state.case, "");
 });
 
 clearTargetTextBtn.addEventListener("click", (e) => {
   targetText.textContent = "";
-  state.text;
 })
