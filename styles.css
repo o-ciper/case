@@ -840,10 +840,10 @@ hr {
 .main {
   display:flex;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
   flex-direction: column;
   height: 100vh;
-  gap: 10px;
+  /* gap: 10px; */
 }
 
 .conversionButtonContainer {
@@ -912,7 +912,12 @@ select {
   background-repeat: no-repeat;
   background-position: right 1rem center;
   background-size: 1em;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
+  margin-top: 20px;
+}
+
+.clearSourceText {
+  margin-top: 15px;
 }
 
 /* #selectCase {
