@@ -5,7 +5,10 @@ const targetText = document.querySelector("#targetText");
 const clearSourceTextBtn = document.querySelector(".clearSourceText");
 const clearTargetTextBtn = document.querySelector(".clearTargetText");
 const locales = ['tr', 'TR', 'tr-TR', 'tr-u-co-search', 'tr-x-turkish'];
-const state = {"text": ""};
+const state = {
+  "text": "",
+  "case": "",
+};
 
 toUpperCaseBtn.addEventListener("click", (e) => {
   if (sourceText.value) {
