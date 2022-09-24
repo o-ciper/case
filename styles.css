@@ -904,7 +904,7 @@ select {
   width: 130px;
   font-size: 1em;
   /* padding: 0.8rem 0.5rem; */
-  border: 1px solid #333;
+  border: 1px solid rgb(150, 150, 150);
   font-family: inherit;
   /** for the dropdown indicator */
   appearance: none;
@@ -912,6 +912,7 @@ select {
   background-repeat: no-repeat;
   background-position: right 1rem center;
   background-size: 1em;
+  margin-bottom: 10px;
 }
 
 /* #selectCase {
