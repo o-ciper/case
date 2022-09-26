@@ -30,7 +30,8 @@ const updateText = (currCase, ctx) => {
       break;
 
     case "capitalize":
-      const temp = state.text.toLocaleLowerCase(locales).split(" ");
+      const exceptions = ["ve", "A.Ş.", "AŞ.", "AŞ", "A.Ş"];
+      const temp = state.text.split(" ");
       // let text = "";
       // if (state.text.length > 0) {
       //   const temp = state.text.toLocaleLowerCase(locales).split(" ");
@@ -41,8 +42,14 @@ const updateText = (currCase, ctx) => {
       // }
       if (state.text.length > 0) {
         for (let i = 0; i < temp.length; i++) {
+          if (exceptions.includes(temp[i]))
+            continue;
+          if ((temp[i] === "Ve") || (temp[i] === "VE")) {
+            temp[i] = temp[i].toLocaleLowerCase(locales);
+            continue;
+          }
           if (temp[i][0])
-            temp[i] = temp[i][0].toLocaleUpperCase(locales) + temp[i].substr(1);
+            temp[i] = temp[i][0].toLocaleUpperCase(locales) + temp[i].substring(1).toLocaleLowerCase(locales);
         }
       }
       targetText.innerText = temp.join(" ");
