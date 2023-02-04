@@ -21,21 +21,6 @@ const charMap = {
   "ç": "c",
 }
 
-function _turkishToEnglish(str) {
-  return str.replace(/[ş]+/g,'s')
-      .replaceAll(/[Ş]+/g,'S')
-      .replaceAll(/[Ü]+/g,'U')
-      .replaceAll(/[ü]+/g,'u')
-      .replaceAll(/[Ö]+/g,'O')
-      .replaceAll(/[ö]+/g,'o')
-      .replaceAll(/[İ]+/g,'I')
-      .replaceAll(/[ı]+/g,'i')
-      .replaceAll(/[ğ]+/g,'g')
-      .replaceAll(/[Ğ]+/g,'G')
-      .replaceAll(/[Ç]+/g,'C')
-      .replaceAll(/[ç]+/g,'c')
-};
-
 function turkishToEnglish(text, charMap) {
   if (!(typeof text == "string" && typeof charMap == "object")) return;
   for (var i = 0; i < text.length; i++) {
@@ -43,7 +28,6 @@ function turkishToEnglish(text, charMap) {
       text = text.replaceAll(text[i], charMap[text[i]]).toLocaleLowerCase(locales);
     }
   }
-  // targetText.innerText = text.toLocaleLowerCase(locales);
   targetText.innerText = text;
 }
 
@@ -100,12 +84,6 @@ const updateText = (currCase, ctx) => {
       targetText.innerText = temp.join(" ");
       break;
 
-      // case "tr-to-eng-lower":
-      //   turkishToEnglish(charMap);
-      //   console.log(state.text)
-      //   targetText.innerText = state.text.toLocaleLowerCase(locales);
-      //   break;
-
     default:
       break;
   }
@@ -124,7 +102,6 @@ sourceText.addEventListener("input", (e) => {
   text = e.target.value;
   if (state.case === "tr-to-eng-lower") {
     turkishToEnglish(text, charMap);
-    console.log(text)
   } else {
     updateText(state.case, e);
   }
