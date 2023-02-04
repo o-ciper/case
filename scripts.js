@@ -6,18 +6,63 @@ const selectCase = document.querySelector("#selectCase");
 
 const locales = ['tr', 'TR', 'tr-TR', 'tr-u-co-search', 'tr-x-turkish'];
 
+const charMap = {
+  "Ş": "S",
+  "ş": "s",
+  "Ü": "U",
+  "ü": "u",
+  "Ö": "O",
+  "ö": "o",
+  "İ": "I",
+  "ı": "i",
+  "Ğ": "G",
+  "ğ": "g",
+  "Ç": "C",
+  "ç": "c",
+}
+
+function _turkishToEnglish(str) {
+  return str.replace(/[ş]+/g,'s')
+      .replaceAll(/[Ş]+/g,'S')
+      .replaceAll(/[Ü]+/g,'U')
+      .replaceAll(/[ü]+/g,'u')
+      .replaceAll(/[Ö]+/g,'O')
+      .replaceAll(/[ö]+/g,'o')
+      .replaceAll(/[İ]+/g,'I')
+      .replaceAll(/[ı]+/g,'i')
+      .replaceAll(/[ğ]+/g,'g')
+      .replaceAll(/[Ğ]+/g,'G')
+      .replaceAll(/[Ç]+/g,'C')
+      .replaceAll(/[ç]+/g,'c')
+};
+
+function turkishToEnglish(text, charMap) {
+  if (!(typeof text == "string" && typeof charMap == "object")) return;
+  for (var i = 0; i < text.length; i++) {
+    if (charMap.hasOwnProperty(text[i])) {
+      text = text.replaceAll(text[i], charMap[text[i]]).toLocaleLowerCase(locales);
+    }
+  }
+  // targetText.innerText = text.toLocaleLowerCase(locales);
+  targetText.innerText = text;
+}
+
 const state = {
   "text": "",
   "case": "lowercase",
 };
 
+let text = "";
+
 const updateText = (currCase, ctx) => {
-  if (typeof ctx === "object") {
-    state.text = ctx.target.value.replaceAll("\n", " ");
-  } else if (typeof ctx === "string") {
-    state.text = ctx;
-  } else {
-    state.text = "";
+  if (!(currCase == "tr-to-eng-lower")) {
+    if (typeof ctx === "object") {
+      state.text = ctx.target.value.replaceAll("\n", " ");
+    } else if (typeof ctx === "string") {
+      state.text = ctx;
+    } else {
+      state.text = "";
+    }
   }
 
   switch (currCase) {
@@ -55,18 +100,34 @@ const updateText = (currCase, ctx) => {
       targetText.innerText = temp.join(" ");
       break;
 
+      // case "tr-to-eng-lower":
+      //   turkishToEnglish(charMap);
+      //   console.log(state.text)
+      //   targetText.innerText = state.text.toLocaleLowerCase(locales);
+      //   break;
+
     default:
       break;
   }
 }
 
 selectCase.addEventListener("change", (e) => {
-  state.case = e.target.value;
-  updateText(state.case, state.text);
+  if (e.target.value === "tr-to-eng-lower") {
+    state.case = "tr-to-eng-lower";
+  } else {
+    state.case = e.target.value;
+    updateText(state.case, state.text);
+  }
 })
 
 sourceText.addEventListener("input", (e) => {
-  updateText(state.case, e);
+  text = e.target.value;
+  if (state.case === "tr-to-eng-lower") {
+    turkishToEnglish(text, charMap);
+    console.log(text)
+  } else {
+    updateText(state.case, e);
+  }
 })
 
 clearSourceTextBtn.addEventListener("click", (e) => {
